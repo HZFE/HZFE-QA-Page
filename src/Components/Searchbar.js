@@ -4,10 +4,6 @@ let timer = null;
 
 class Searchbar extends Component {
 
-    constructor (props) {
-        super(props);
-    }
-
     onSearchChange = (e) => {
         if (timer) {
             clearTimeout(timer);

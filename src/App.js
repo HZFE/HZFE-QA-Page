@@ -1,10 +1,22 @@
+// @flow
 import React, { Component } from 'react';
-import './style/index.scss';
+import style from './style/index.scss';
 import Header from './Components/Header';
 import Searchbar from './Components/Searchbar';
 import QAList from './Components/QAList';
 
-class App extends Component {
+type Props = any;
+type List = {
+  title: string;
+  category: string;
+  tag: string;
+}[];
+type State = {
+  filter: string,
+  list: List
+}
+
+class App extends Component<Props, State> {
   constructor () {
     super();
     this.state = {
@@ -31,13 +43,13 @@ class App extends Component {
     }
   }
 
-  setFilter = (value) => {
+  setFilter = (value: string) => {
     this.setState({
       filter: value
     });
   }
 
-  listFiltered = () => {
+  listFiltered = (): List => {
     return this.state.list;
   }
 
