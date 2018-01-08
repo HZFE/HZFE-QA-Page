@@ -13,7 +13,7 @@ class QAList extends Component {
                 !item.link && <button>PR</button>
             ];
             return (
-                <li>{
+                <li key={ item.title }>{
                     item.link ? 
                         <a href={ item.link }>{ content }</a> : 
                         content
@@ -23,14 +23,20 @@ class QAList extends Component {
     }
 
     render() {
-      return (
-        <nav className="qa-list">
-          <h3>{ this.props.title }</h3>
-          <ul>
-              { this.listBuilder() }
-          </ul>
-        </nav>
-      );
+        const pages = Array.from({length: this.props.page}, (_, index) => (
+            <li key={ index } onClick={this.props.setPage.bind(null, index)}>{ index + 1 }</li>
+        ));
+        return [
+            <nav className="qa-list">
+                <h3>{ this.props.title }</h3>
+                <ul>
+                    { this.listBuilder() }
+                </ul>
+            </nav>,
+            <ul className="pagination">
+                { pages }
+            </ul>
+        ];
     }
   }
   
