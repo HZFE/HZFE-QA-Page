@@ -6,6 +6,7 @@ import Searchbar from './Components/Searchbar';
 import QAList from './Components/QAList';
 import axios from 'axios';
 import config from './config';
+import Loading from './Components/Loading';
 
 type Props = any;
 type List = {
@@ -17,7 +18,6 @@ type State = {
   filter: string,
   list: List
 }
-
 
 const listTemplate = {
   title: "",
@@ -69,7 +69,7 @@ class App extends Component<Props, State> {
   listFiltered = (): List => {
     const filter = this.state.filter.toLowerCase();
     return this.state.list.filter(item => {
-      return Boolean(
+      return (
         item.title.toLowerCase().indexOf(filter) >= 0 ||
         item.category.toLowerCase().indexOf(filter) >= 0 ||
         item.tag.toLowerCase().indexOf(filter) >= 0
@@ -98,11 +98,14 @@ class App extends Component<Props, State> {
 
   render() {
     const pageNum = Math.ceil(this.listFiltered().length / this.state.pagination.perPage);
+    let contentArea;
     return (
       <main className="hzfe">
-        <Header></Header>
+        <Header name={ config.name }></Header>
         <Searchbar setFilter={ this.setFilter }></Searchbar>
-        <QAList list={ this.listPaged() } page={ pageNum } setPage={ this.setPage }></QAList>
+        {(this.listPaged().length || this.state.filter) ? 
+            <QAList list={ this.listPaged() } page={ pageNum } setPage={ this.setPage }></QAList> :
+            <Loading></Loading>}
       </main>
     );
   }

@@ -1,10 +1,9 @@
 import React from 'react';
-import config from '../config';
 
-export default function header () {
+export default function header (props) {
     return (
         <header>
-            <h1>{ config.name }</h1>
+            <h1>{ props.name }</h1>
         </header>
     )
 }

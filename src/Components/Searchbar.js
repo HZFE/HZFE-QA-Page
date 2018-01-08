@@ -30,7 +30,6 @@ class Searchbar extends Component {
     }
 
     compositionToggle (state) {
-        console.log('compositionToggle', state);
         compositionStarted = !!state;
     }
 
