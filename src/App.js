@@ -97,7 +97,7 @@ class App extends Component<Props, State> {
   }
 
   render() {
-    const pageNum = Math.ceil(this.state.pagination.total / this.state.pagination.perPage);
+    const pageNum = Math.ceil(this.listFiltered().length / this.state.pagination.perPage);
     return (
       <main className="hzfe">
         <Header></Header>
