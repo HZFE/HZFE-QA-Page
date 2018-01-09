@@ -9,6 +9,7 @@ class QAList extends Component {
         }
         return this.props.list.map(item => {
             const content = [
+                !item.link && <button>PR</button>,
                 <h3 title={ item.title }>{ 
                     item.link ? 
                         <a href={ item.link }>{ item.title }</a> : 
@@ -17,8 +18,7 @@ class QAList extends Component {
                 <div className="meta">
                     <span className="category">{ item.category }</span>
                     <span className="tag">{ item.tag }</span>
-                </div>,
-                !item.link && <button>PR</button>
+                </div>
             ];
             const clsNames = {
                 "qa-item": true,
