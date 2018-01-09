@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { classNames } from '../utils';
 
 class QAList extends Component {
@@ -40,18 +40,20 @@ class QAList extends Component {
         const pages = Array.from({length: this.props.page}, (_, index) => (
             <li key={ index } onClick={this.props.setPage.bind(null, index)}>{ index + 1 }</li>
         ));
-        return [
-            <nav className="qa-list">
-                <h3>{ this.props.title }</h3>
-                <ul>
-                    { this.listBuilder() }
+        return (
+            <Fragment>
+                <nav className="qa-list">
+                    <h3>{ this.props.title }</h3>
+                    <ul>
+                        { this.listBuilder() }
+                    </ul>
+                </nav>,
+                <ul className="pagination">
+                    { pages }
                 </ul>
-            </nav>,
-            <ul className="pagination">
-                { pages }
-            </ul>
-        ];
+            </Fragment>
+        )
     }
   }
-  
+
   export default QAList;
