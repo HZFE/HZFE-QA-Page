@@ -9,7 +9,7 @@ class QAList extends Component {
         }
         return this.props.list.map(item => {
             const content = [
-                <h3>{ 
+                <h3 title={ item.title }>{ 
                     item.link ? 
                         <a href={ item.link }>{ item.title }</a> : 
                         item.title 
