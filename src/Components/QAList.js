@@ -1,6 +1,23 @@
 import React, { Component, Fragment } from 'react';
 import { classNames } from '../utils';
 
+function QaItem (props) {
+    return (
+        <div className="cover">
+            {!props.item.link && <button>PR</button>}
+            <h3 title={ props.item.title }>{ 
+                props.item.link ? 
+                    <a href={ props.item.link }>{ props.item.title }</a> : 
+                    props.item.title 
+            }</h3>
+            <div className="meta">
+                <span className="category">{ props.item.category }</span>
+                <span className="tag">{ props.item.tag }</span>
+            </div>
+        </div>
+    );
+}
+
 class QAList extends Component {
 
     listBuilder = () => {
@@ -8,18 +25,6 @@ class QAList extends Component {
             return <li className="no-content">啊咧没搜到</li>
         }
         return this.props.list.map(item => {
-            const content = [
-                !item.link && <button>PR</button>,
-                <h3 title={ item.title }>{ 
-                    item.link ? 
-                        <a href={ item.link }>{ item.title }</a> : 
-                        item.title 
-                }</h3>,
-                <div className="meta">
-                    <span className="category">{ item.category }</span>
-                    <span className="tag">{ item.tag }</span>
-                </div>
-            ];
             const clsNames = {
                 "qa-item": true,
                 "qa-item-type-html": false,
@@ -30,7 +35,7 @@ class QAList extends Component {
             }
             return (
                 <li key={ item.title } className={ classNames(clsNames) }>
-                    <div className="cover">{ content }</div>
+                    <QaItem item={ item }></QaItem>
                 </li>
             );
         });
