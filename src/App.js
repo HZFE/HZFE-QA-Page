@@ -105,7 +105,8 @@ class App extends Component<Props, State> {
         <Searchbar setFilter={ this.setFilter }></Searchbar>
         {(this.listPaged().length || this.state.filter) ? 
             <QAList list={ this.listPaged() } page={ pageNum } setPage={ this.setPage }></QAList> :
-            <Loading></Loading>}
+            'Loading...'}
+        <Loading></Loading>
       </main>
     );
   }
